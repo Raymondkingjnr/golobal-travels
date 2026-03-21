@@ -6,7 +6,9 @@ export  const useFlightDetails = (itemKey:string | null, priceKey:string | null)
         queryKey: ['flight-details', itemKey, priceKey],
         queryFn: () => getFlightsDetails(itemKey!, priceKey!),
         enabled: !!itemKey && !!priceKey,
-        staleTime: Infinity,
-        gcTime: 1000 * 60 *30,
+        gcTime: 1000 * 60 * 30,
+        refetchOnWindowFocus: false,
+        retry: false,
+        staleTime: 1000 * 60 * 10,
     })
 }

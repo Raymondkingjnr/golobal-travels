@@ -120,7 +120,7 @@ export const HotelMap = ({ location, address }: LocationProps) => (
                 href={`https://www.google.com/maps?q=${location?.latitude},${location?.longitude}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-xs px-4 py-2 border border-primary text-primary rounded-lg hover:bg-primary/10 transition"
+                className="text-xs px-4 py-2 border border-primary text-background rounded-lg hover:bg-primary/10 transition"
             >
                 View on Google Maps
             </a>

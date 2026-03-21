@@ -161,7 +161,7 @@ const HotelsContent = () => {
                         />
                     </div>
                     <button onClick={handleSearch} disabled={!canSearch}
-                            className="flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-lg font-sans text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all h-full disabled:opacity-50 disabled:cursor-not-allowed">
+                            className="flex items-center justify-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all h-full disabled:opacity-50 disabled:cursor-not-allowed">
                         <Search size={25} strokeWidth={3}/>
                     </button>
                 </div>

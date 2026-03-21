@@ -6,7 +6,9 @@ export const useGetFlights = (originAirportCode:string, destinationAirportCode:s
         queryKey: ['flights', originAirportCode, destinationAirportCode, cabinClass, departureDate],
         queryFn: () => getFlights(originAirportCode, destinationAirportCode, cabinClass, departureDate),
         enabled,
-        staleTime: Infinity,
-        gcTime: 1000 * 60 *30,
+        gcTime: 1000 * 60 * 30,
+        refetchOnWindowFocus: false,
+        retry: false,
+        staleTime: 1000 * 60 * 10,
     })
 }

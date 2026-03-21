@@ -15,6 +15,7 @@ import {
 import { Plane, Building2, ArrowRightLeft, ChevronDown, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {useState} from "react";
+import Link from "next/link"
 
 
 const destinations = [
@@ -74,7 +75,7 @@ export default function Home() {
                 <div className="flex gap-6 mb-6">
                     <button
                         onClick={() => setActiveTab('flights')}
-                        className={`flex items-center gap-2 pb-2 font-sans text-sm font-semibold transition-colors ${
+                        className={`flex items-center gap-2 pb-2 text-sm font-semibold transition-colors ${
                             activeTab === 'flights' ? 'text-background border-b-2 border-primary' : 'text-muted-background'
                         }`}
                     >
@@ -82,7 +83,7 @@ export default function Home() {
                     </button>
                     <button
                         onClick={() => setActiveTab('stays')}
-                        className={`flex items-center gap-2 pb-2 font-sans text-sm font-semibold transition-colors ${
+                        className={`flex items-center gap-2 pb-2 text-sm font-semibold transition-colors ${
                             activeTab === 'stays' ? 'text-background border-b-2 border-primary' : 'text-muted-background'
                         }`}
                     >
@@ -117,22 +118,26 @@ export default function Home() {
 
                 <div className="flex justify-end items-center gap-4 mt-4">
                     <a href="#" className="font-body text-sm text-background hover:underline">+ Add Promo Code</a>
-                    <button className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-background rounded-lg font-sans text-sm font-semibold hover:opacity-90 transition-opacity">
-                        <Send size={16} /> Show Flights
-                    </button>
+                    <Link href={"/flights"} className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-background rounded-lg  hover:opacity-90 transition-opacity">
+                        <Send size={16} /> <span className={"text-xs font-semibold"}>
+                        Show Flights
+                           </span>
+                    </Link>
                 </div>
             </div>
         </div>
 
         {/* Destinations */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-36">
-            <div className="flex items-center justify-between mb-10">
+        <section className="max-w-7xl mx-auto px-6 md:px-12  lg:px-20 py-36">
+            <div className="flex flex-col md:flex-row gap-2.5 md:items-center justify-between mb-10">
                 <div>
                     <h3 className="text-2xl md:text-3xl font-bold text-background/50 pb-2">Plan your perfect trip</h3>
                     <p className="font-body text-muted-foreground mt-1">Search Flights & Places Hire to our most popular destinations</p>
                 </div>
-                <button className="px-4 py-2 border border-primary text-background rounded-lg font-sans text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors">
-                    See more places
+                <button className="px-4 py-2 border border-primary text-background rounded-lg w-fit text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors">
+                   <h2>
+                       See more places
+                   </h2>
                 </button>
             </div>
 
@@ -162,8 +167,8 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {[
-                    { title: 'Flights', desc: 'Search Flights & Places Hire to our most popular destinations', img: flex_image01 },
-                    { title: 'Hotels', desc: 'Search hotels & Places Hire to our most popular destinations', img: flex_image02 },
+                    { title: 'Flights', desc: 'Search Flights & Places Hire to our most popular destinations', img: flex_image01, href: '/flights' },
+                    { title: 'Hotels', desc: 'Search hotels & Places Hire to our most popular destinations', img: flex_image02, href: '/hotels' },
                 ].map((card) => (
                     <motion.div
                         key={card.title}
@@ -178,9 +183,9 @@ export default function Home() {
                         <div className="relative z-10 flex flex-col items-center justify-center h-full text-primary-foreground text-center px-6">
                             <h3 className="text-3xl font-bold mb-2 text-foreground">{card.title}</h3>
                             <p className="font-body text-sm max-w-xs text-foreground">{card.desc}</p>
-                            <button className=" mt-4 flex items-center gap-2 px-5 py-2.5 bg-primary text-background rounded-lg font-sans text-sm font-semibold hover:opacity-90 transition-opacity">
+                                <Link href={card.href} className=" mt-4 flex items-center gap-2 px-5 py-2.5 bg-primary text-background rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity">
                                 <Send size={14} /> Show {card.title}
-                            </button>
+                                </Link>
                         </div>
                     </motion.div>
                 ))}

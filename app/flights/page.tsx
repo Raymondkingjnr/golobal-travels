@@ -29,7 +29,6 @@ const Flights = () => {
         const year = date.getFullYear();
         return `${year}-${month}-${day}`;
     };
-
     const today = new Date();
 
     const [from, setFrom] = useState('');
@@ -42,11 +41,11 @@ const Flights = () => {
     const ITEMS_PER_PAGE = 10;
     const [page, setPage] = useState(1);
 
-    const debouncedFrom = useDebounce(from, 500);
-    const debouncedTo = useDebounce(to, 500);
+    // const debouncedFrom = useDebounce(from, 500);
+    // const debouncedTo = useDebounce(to, 500);
 
-    const { data: fromData, isError: isFromError  } = useSearchFlights(debouncedFrom, );
-    const { data: toData , isError: isToError} = useSearchFlights(debouncedTo, );
+    const { data: fromData, isError: isFromError  } = useSearchFlights(from );
+    const { data: toData , isError: isToError} = useSearchFlights(to );
 
 
 
@@ -168,7 +167,7 @@ const Flights = () => {
                     <button
                         onClick={handleSearch}
                         disabled={!canSearch}
-                        className=" disabled:opacity-80 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-6 py-2 bg-primary text-primary-foreground rounded-lg font-sans text-sm font-semibold hover:opacity-90 transition-opacity h-full">
+                        className=" disabled:opacity-80 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-6 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity h-full">
                         <Search size={26} strokeWidth={2} />
                     </button>
                 </div>

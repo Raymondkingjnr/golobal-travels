@@ -117,7 +117,7 @@ const Stays = () => {
                             <LocationDropdown result={locationData?.data.locationData ?? []} onSelect={handleSelect} />
                             </div>
                         )}
-                        <button className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-background rounded-lg font-sans text-sm font-semibold hover:opacity-90 transition-opacity w-full lg:w-auto" onClick={handleViewHoteles}>
+                        <button className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-background rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity w-full lg:w-auto" onClick={handleViewHoteles}>
                             <BuildingIcon size={16} /> Search
                         </button>
                     </div>
@@ -241,7 +241,7 @@ const Stays = () => {
                         </button>
                     </div>
 
-                    <section className=" bg-white flex items-center justify-between p-8 font-sans">
+                    <section className=" bg-white flex items-center justify-between p-8">
                         <div className="flex gap-5 w-full ">
                             {/* Left Card */}
                             <div className="relative flex flex-col justify-between bg-primary rounded-3xl p-8 flex-1 min-h-105">

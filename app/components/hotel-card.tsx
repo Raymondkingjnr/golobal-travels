@@ -90,7 +90,7 @@ export const HotelCard = React.memo(({hotel}: Props) => {
                             <Heart size={25} strokeWidth={3} className="text-secondary" />
                         </button>
 
-                           <Link href={`/single-hotel/${hotel.hotelId}`} className="flex-1 text-center py-3 rounded-md bg-primary text-primary-foreground font-sans text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all">
+                           <Link href={`/single-hotel/${hotel.hotelId}`} className="flex-1 text-center py-3 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all">
                             View Place
                            </Link>
                     </div>
