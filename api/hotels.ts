@@ -1,5 +1,5 @@
 import {RAPID_API_KEY} from "@/api/flightApi";
-import {HotelDetails, HotelDetailsRes, IHotelResponse, LocationResponse} from "@/modals/hotel/interface";
+import { HotelDetailsRes, IHotelResponse, LocationResponse} from "@/modals/hotel/interface";
 
 const RAPID_API_HOST = 'priceline-api-pro.p.rapidapi.com';
 const BASE_URL = `https://${RAPID_API_HOST}`
