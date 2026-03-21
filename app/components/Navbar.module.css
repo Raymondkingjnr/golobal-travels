@@ -1,0 +1,129 @@
+/* Navbar.module.css */
+
+.nav {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0 5rem;
+    background: transparent;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--background);
+    text-decoration: none;
+}
+
+.navLink:hover {
+    opacity: 0.8;
+}
+
+.leftLinks {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.authButtons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.loginLink {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--background);
+    text-decoration: none;
+}
+
+.loginLink:hover {
+    text-decoration: underline;
+}
+
+.signupBtn {
+    padding: 8px 16px;
+    background-color: var(--primary);
+    color: var(--background);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.signupBtn:hover {
+    opacity: 0.9;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--background);
+    padding: 0;
+}
+
+.spacer {
+    display: none;
+    width: 22px;
+}
+
+.mobileMenu {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+}
+
+.mobileMenuInner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+}
+
+.mobileAuth {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .nav {
+        padding: 0 1.5rem;
+    }
+
+    .leftLinks {
+        display: none;
+    }
+
+    .authButtons {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .spacer {
+        display: block;
+    }
+}
