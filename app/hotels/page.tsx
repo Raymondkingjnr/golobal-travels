@@ -4,12 +4,13 @@ import {useGetHotels} from "@/hooks/hotel-hooks/get-hotels";
 import {useSearchParams} from "next/navigation";
 import {Suspense, useState} from "react";
 import {Building2, CalendarDays, HouseIcon, Search, Star, User} from "lucide-react";
-import {HotelCard, LocationDropdown, Spinner} from "@/app/components";
+import {LocationDropdown, Spinner} from "@/app/components";
 import {useLocation} from "@/hooks/hotel-hooks/get-location";
 import {amenityLabels, AmenityCode} from "@/utils/constant/data";
 import {Pagination} from "@/app/components/Pagination";
 import {LocationItem} from "@/modals/hotel/interface";
 import {useDebounce} from "@/app/components/debounce";
+import {HotelCard} from "@/app/components/hotel-card";
 
 const STAR_OPTIONS: { label: string; value: string }[] = [
     { label: '3+', value: '3,3.5,4,4.5,5' },

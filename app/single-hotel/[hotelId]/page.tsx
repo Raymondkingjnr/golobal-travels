@@ -1,7 +1,7 @@
 
-import {HotelDetailsCom} from "@/app/components";
 import Loader from "@/app/single-hotel/loading";
 import {Suspense} from "react";
+import {HotelDetailsCom} from "@/app/components/hotel-details-com";
 
 export default  async function  SingleHotel ({params}: {params: Promise<{hotelId: string}>}) {
 

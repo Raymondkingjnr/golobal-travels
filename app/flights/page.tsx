@@ -4,10 +4,11 @@ import { useSearchFlights } from "@/hooks/flights-hooks/search-flights";
 import { useState } from "react";
 import {  Search,} from 'lucide-react';
 import { searchTeams} from "@/api/flightApi";
-import {DestinationDropdown, FlightListings, Spinner} from "@/app/components";
+import {DestinationDropdown,  Spinner} from "@/app/components";
 import {useRouter} from "next/navigation";
 import {useDebounce} from "@/app/components/debounce";
 import {Suspense} from "react";
+import {FlightListings} from "@/app/components/flight-listings";
 
 type CabinClass = 'ECO' | 'PEC' | 'BUS' | 'FST';
 
