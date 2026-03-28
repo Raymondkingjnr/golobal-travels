@@ -1,11 +1,11 @@
-import {useQuery} from "@tanstack/react-query";
+import {useQuery, useSuspenseQuery} from "@tanstack/react-query";
 import {getFlightsDetails} from "@/api/flightApi";
 
 export  const useFlightDetails = (itemKey:string | null, priceKey:string | null) => {
-    return useQuery({
+    return useSuspenseQuery({
         queryKey: ['flight-details', itemKey, priceKey],
         queryFn: () => getFlightsDetails(itemKey!, priceKey!),
-        enabled: !!itemKey && !!priceKey,
+        // enabled: !!itemKey && !!priceKey,
         gcTime: 1000 * 60 * 30,
         refetchOnWindowFocus: false,
         retry: false,

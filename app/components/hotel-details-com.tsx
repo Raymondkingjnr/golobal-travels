@@ -11,23 +11,16 @@ import {
     StarRating
 } from "@/app/components/hotel-overview";
 import {Heart, MapPin, Share2} from "lucide-react";
-import {Spinner} from "@/app/components/spinner";
 interface Props {
     hotelId: string
 }
 
-export const HotelDetailsCom = React.memo(({hotelId}: Props) => {
+export const HotelDetailsCom = ({hotelId}: Props) => {
 
-    const {data, isLoading, isError} = useHotelDetails(hotelId)
+    const {data} = useHotelDetails(hotelId)
     const hotel = data?.data
     return (
         <>
-            {isLoading ?
-             <Spinner /> : !isLoading && isError ?
-                    <div>
-                     <h2 className={"text-center font-semibold text-red-400 text-lg"}>Error while fetching hotel details try again later</h2>
-                    </div>
-                    :
                     <div className={"flex flex-col gap-4"}>
                     {/* Header */}
                     <div className="flex flex-col md:flex-row items-start justify-between gap-4">
@@ -66,10 +59,8 @@ export const HotelDetailsCom = React.memo(({hotelId}: Props) => {
                     <HotelPolicies policies={hotel?.policies} />
                 </div>
 
-            }
         </>
     )
-})
+}
 
-HotelDetailsCom.displayName = 'HotelDetailsCom'
 

@@ -9,6 +9,7 @@ import {useLocation} from "@/hooks/hotel-hooks/get-location";
 import {amenityLabels, AmenityCode} from "@/utils/constant/data";
 import {Pagination} from "@/app/components/Pagination";
 import {LocationItem} from "@/modals/hotel/interface";
+import {useDebounce} from "@/app/components/debounce";
 
 const STAR_OPTIONS: { label: string; value: string }[] = [
     { label: '3+', value: '3,3.5,4,4.5,5' },
@@ -39,11 +40,11 @@ const HotelsContent = () => {
     const [query, setQuery] = useState<string>('');
     const [selectLocation, setSelectLocation] = useState<LocationItem | null>(null);
     const location = searchParams.get("locationId");
+    const [page, setPage] = useState(1);
+    const [shouldSearch, setShouldSearch] = useState(!!location);
 
     const ITEMS_PER_PAGE = 10;
-    const [page, setPage] = useState(1);
-
-    const [shouldSearch, setShouldSearch] = useState(!!location);
+   const debouncedQuery = useDebounce(query, 500);
 
     const toInputFormat = (date: string) => {
         const [month, day, year] = date.split('-');
@@ -78,7 +79,7 @@ const HotelsContent = () => {
 
     const amenitiesParam = selectedAmenities.length > 0 ? selectedAmenities.join(',') : null;
 
-    const {data: locationData} = useLocation(query);
+    const {data: locationData, isLoading:isLocationLoading} = useLocation(debouncedQuery);
 
     const {data, isLoading} = useGetHotels(
         locationID,
@@ -120,7 +121,7 @@ const HotelsContent = () => {
                         />
                         {!selectLocation && (
                             <div className="absolute left-0 top-full z-60 w-full bg-foreground border border-border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
-                                <LocationDropdown result={locationData?.data.locationData ?? []} onSelect={handleSelect}/>
+                                <LocationDropdown result={locationData?.data.locationData ?? []} onSelect={handleSelect} isLoading={isLocationLoading}/>
                             </div>
                         )}
                     </div>

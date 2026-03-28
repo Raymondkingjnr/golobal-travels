@@ -3,19 +3,24 @@
 
 import React from 'react';
 import {LocationItem} from "@/modals/hotel/interface";
+import {Spinner} from "@/app/components/spinner";
 
 
 interface Props {
     result: LocationItem[];
     onSelect: (location: LocationItem) => void;
+    isLoading:boolean;
 }
 
-export const LocationDropdown = React.memo(({ result, onSelect }: Props) => {
+export const LocationDropdown = React.memo(({ result, onSelect, isLoading }: Props) => {
     if (!result?.length) return null;
 
     return (
         <div >
-            {result.map((loc) => (
+            { isLoading ?
+                <Spinner />
+             :
+            result.map((loc) => (
                 <button
                     key={loc.id}
                     onClick={() => onSelect(loc)}
@@ -27,7 +32,8 @@ export const LocationDropdown = React.memo(({ result, onSelect }: Props) => {
                     </div>
                     <span className="ml-auto text-xs text-muted-foreground font-mono">{loc?.stateCode ?? "-- --"}</span>
                 </button>
-            ))}
+            ))
+            }
         </div>
     );
 });

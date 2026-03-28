@@ -7,6 +7,7 @@ export {Spinner} from "./spinner"
 export {LocationDropdown} from "./location-dropdown"
 export {HotelCard} from "./hotel-card"
 export {HotelDetailsCom} from "./hotel-details-com"
+export {FlightListings} from "./flight-listings"
 export {Navbar} from "./navbar"
 
 

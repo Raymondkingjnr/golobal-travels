@@ -11,6 +11,7 @@ import {useState} from "react";
 import {LocationDropdown} from "@/app/components";
 import {useRouter} from "next/navigation";
 import {LocationItem} from "@/modals/hotel/interface";
+import {useDebounce} from "@/app/components/debounce";
 
 const Stays = () => {
     const [ query, setQuery] = useState<string>('')
@@ -18,7 +19,9 @@ const Stays = () => {
 
     const router = useRouter()
 
-    const {data:locationData} = useLocation(query)
+    const debouncedQuery = useDebounce(query, 500);
+
+    const {data:locationData, isLoading} = useLocation(debouncedQuery)
 
     const handleSelect  = (loco: LocationItem) =>{
      setSelectLocation(loco)
@@ -114,7 +117,7 @@ const Stays = () => {
                         />
                         {!selectLocation && (
                             <div className="absolute left-2 top-20 z-60 bg-foreground border max-w-90 border-border rounded-lg shadow-lg mt-1 max-h-60 overflow-y-auto">
-                            <LocationDropdown result={locationData?.data.locationData ?? []} onSelect={handleSelect} />
+                            <LocationDropdown result={locationData?.data.locationData ?? []} onSelect={handleSelect} isLoading={isLoading} />
                             </div>
                         )}
                         <button className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-background rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity w-full lg:w-auto" onClick={handleViewHoteles}>
@@ -241,8 +244,8 @@ const Stays = () => {
                         </button>
                     </div>
 
-                    <section className=" bg-white flex items-center justify-between p-8">
-                        <div className="flex gap-5 w-full ">
+                    <section className=" bg-white flex items-center justify-between py-8 px-2">
+                        <div className="flex flex-col lg:flex-row gap-5 w-full ">
                             {/* Left Card */}
                             <div className="relative flex flex-col justify-between bg-primary rounded-3xl p-8 flex-1 min-h-105">
                                 {/* Price Badge */}
@@ -254,12 +257,12 @@ const Stays = () => {
                                 {/* Content */}
                                 <div>
                                     <h1
-                                        className="text-5xl font-black text-gray-900 leading-tight mb-6"
+                                        className="md:text-5xl text-3xl font-black text-gray-900 leading-tight mb-6"
                                         style={{ fontFamily: "'Georgia', serif" }}
                                     >
                                         Backpacking<br />Sri Lanka
                                     </h1>
-                                    <p className="text-gray-700 text-sm leading-relaxed max-w-xs">
+                                    <p className="text-gray-700 text-sm leading-relaxed max-w-2xl">
                                         Traveling is a unique experience as it&lsquo;s the best way to unplug from the
                                         pushes and pulls of daily life. It helps us to forget about our problems,
                                         frustrations, and fears at home. During our journey, we experience life in
