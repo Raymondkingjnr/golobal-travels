@@ -66,7 +66,7 @@ export const Navbar = () => {
                                 <p>Favourites</p>
                                 <HeartIcon size={20}  />
                             </Link>
-                            <p className="text-sm font-normal text-[#112211]">{user.name}</p>
+                            <p className="text-sm font-normal text-[#112211] capitalize">{user.name}</p>
                             <button className={styles.signupBtn} onClick={logoutHandler}>{signOut.isPending ? 'Logging out...' : 'Log Out'}</button>
                         </div>
                     ) : (
@@ -111,14 +111,16 @@ export const Navbar = () => {
                             <Link href="/stays" onClick={() => setIsOpen(false)} className={styles.navLink}>
                                 <Building2 size={16} /> Find Stays
                             </Link>
+                            {token && user &&
                             <Link href={"/favourites"} className={styles.navLink}>
                                 <HeartIcon size={16}  />
                                 <p>Favourites</p>
                             </Link>
+                            }
                             <div className={styles.mobileAuth}>
                                 {token && user ? (
                                     <div className="flex flex-col gap-1">
-                                        <p className="text-sm font-semibold text-[#112211]">{user.name}</p>
+                                        <p className="text-sm font-normal text-[#112211] capitalize">{user.name}</p>
                                         <button className={styles.signupBtn} onClick={logoutHandler}>{signOut.isPending ? 'Logging out...' : 'Log Out'}</button>
                                     </div>
                                 ) : (

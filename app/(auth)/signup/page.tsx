@@ -34,7 +34,6 @@ export default function SignUpPage() {
 
         try {
              signupMutation.mutate(payload)
-            router.push("/login");
         } catch (error) {
             console.log(error)
         }
@@ -72,8 +71,8 @@ export default function SignUpPage() {
                     <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                         {/* Row 1 */}
                         <div className="grid grid-cols-2 gap-4">
-                            <FloatingInput label="First Name"
-                                           placeholder="John"
+                            <FloatingInput label="fullname"
+                                           placeholder="John Deo"
                                            value={values.name}
                                            onChange={handleChange('name')}
                                            error={errors ? errors.name : ""} />
