@@ -1,5 +1,5 @@
 
-import Loader from "@/app/single-hotel/loading";
+import Loader from "@/app/(main)/single-hotel/loading";
 import {Suspense} from "react";
 import {HotelDetailsCom} from "@/app/components/hotel-details-com";
 

@@ -16,6 +16,7 @@ import { Plane, Building2, ArrowRightLeft, ChevronDown, Send } from 'lucide-reac
 import { motion } from 'framer-motion';
 import {useState} from "react";
 import Link from "next/link"
+import {Footer, Navbar} from "@/app/components";
 
 
 const destinations = [
@@ -34,6 +35,8 @@ export default function Home() {
     const [activeTab, setActiveTab] = useState<'flights' | 'stays'>('flights');
 
     return (
+        <>
+        <Navbar />
     <div className="min-h-screen bg-white text-black">
 
     {/*    HERO*/}
@@ -193,5 +196,8 @@ export default function Home() {
         </section>
 
     </div>
+
+            <Footer />
+        </>
   );
 }
