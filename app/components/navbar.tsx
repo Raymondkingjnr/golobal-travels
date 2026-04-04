@@ -62,7 +62,7 @@ export const Navbar = () => {
                 <div className={styles.authButtons}>
                     {token && user ? (
                         <div className="text-right flex items-center gap-3">
-                            <Link href={"/favourites"} className={'flex items-center gap-1'}>
+                            <Link href={"/favourite"} className={'flex items-center gap-1'}>
                                 <p>Favourites</p>
                                 <HeartIcon size={20}  />
                             </Link>
@@ -112,7 +112,7 @@ export const Navbar = () => {
                                 <Building2 size={16} /> Find Stays
                             </Link>
                             {token && user &&
-                            <Link href={"/favourites"} className={styles.navLink}>
+                            <Link href={"/favourite"} className={styles.navLink}>
                                 <HeartIcon size={16}  />
                                 <p>Favourites</p>
                             </Link>
@@ -120,7 +120,7 @@ export const Navbar = () => {
                             <div className={styles.mobileAuth}>
                                 {token && user ? (
                                     <div className="flex flex-col gap-1">
-                                        <p className="text-sm font-normal text-[#112211] capitalize">{user.name}</p>
+                                        <p className="text-sm font-semibold text-[#112211] capitalize">{user.name}</p>
                                         <button className={styles.signupBtn} onClick={logoutHandler}>{signOut.isPending ? 'Logging out...' : 'Log Out'}</button>
                                     </div>
                                 ) : (

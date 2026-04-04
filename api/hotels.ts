@@ -52,7 +52,7 @@ export const getHotels = async (
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch hotels data: ${response.status} ${response.statusText}`);
+        throw new Error(`Failed to fetch hotels data: ${response.status}`);
     }
 
     return response.json();
@@ -66,10 +66,14 @@ export const getHotelDetails = async (hotelId: string):Promise<HotelDetailsRes> 
       });
 
     if (!response.ok) {
-
         throw new Error(`Failed to fetch hotel details data: ${response.status} ${response.statusText}`)
     }
 
     return response.json();
 
 }
+
+// {
+//     "success": false,
+//     "message": "No hotel listings found for the specified criteria."
+// }

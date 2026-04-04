@@ -1,4 +1,4 @@
-import {Heart, MapPin, Star} from "lucide-react";
+import {MapPin, Star} from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
@@ -10,10 +10,9 @@ interface Props {
 }
 export const HotelCard = React.memo(({hotel}: Props) => {
 
+
     return (
-        <div
-            className="bg-foreground rounded-2xl overflow-hidden shadow-lg hover:shadow-md transition-shadow"
-        >
+        <div className="bg-foreground rounded-2xl overflow-hidden shadow-lg hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row">
                 {/* Image */}
                 <div className="relative w-full md:w-72 h-52 md:h-auto shrink-0 bg-muted">
@@ -86,9 +85,9 @@ export const HotelCard = React.memo(({hotel}: Props) => {
 
                     {/* Actions */}
                     <div className="flex items-center gap-3 mt-4 pt-4 border-t border-border">
-                        <button className="w-10 h-10 rounded-md border border-border flex items-center justify-center hover:bg-muted active:scale-[0.97] transition-all">
-                            <Heart size={25} strokeWidth={3} className="text-secondary" />
-                        </button>
+                        {/*<button className="w-10 h-10 rounded-md border border-border flex items-center justify-center hover:bg-muted active:scale-[0.97] transition-all">*/}
+                        {/*    <Heart size={25} strokeWidth={3} className="text-secondary" fill={favourite ? "#fb2c36" : "none"}/>*/}
+                        {/*</button>*/}
 
                            <Link href={`/single-hotel/${hotel.hotelId}`} className="flex-1 text-center py-3 rounded-md bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all">
                             View Place

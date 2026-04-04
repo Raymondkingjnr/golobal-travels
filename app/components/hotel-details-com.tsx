@@ -11,14 +11,41 @@ import {
     StarRating
 } from "@/app/components/hotel-overview";
 import {Heart, MapPin, Share2} from "lucide-react";
+import {addHotel, removeHotel} from "@/store/hotel-slice"
+import {useAppSelector, useAppDispatch} from "@/store/hook";
+import toast from "react-hot-toast";
+import {GetLoggedInUser, getSessionStorage} from "@/utils/helpers";
+
 interface Props {
     hotelId: string
 }
 
 export const HotelDetailsCom = ({hotelId}: Props) => {
 
+    const token = getSessionStorage();
+    const loggedInUser = GetLoggedInUser();
+
     const {data} = useHotelDetails(hotelId)
     const hotel = data?.data
+
+    const favouriteHotels = useAppSelector(state => state.favouriteHotel.hotel)
+    const dispatch = useAppDispatch()
+
+    const favourite = favouriteHotels.some(fav => fav.id === hotelId)
+
+    const changefavouriteStatus = () =>{
+        if (!token && !loggedInUser) return toast.error(
+            "You need to login first"
+        )
+        if (favourite) {
+            dispatch(removeHotel({hotelId}))
+            toast.success("Hotel removed from favourites")
+        }else {
+            dispatch(addHotel({hotel: hotel}))
+            toast.success("Hotel added to favourites")
+        }
+    }
+
     return (
         <>
                     <div className={"flex flex-col gap-4"}>
@@ -35,13 +62,9 @@ export const HotelDetailsCom = ({hotelId}: Props) => {
                                 <span>{hotel?.address?.fullAddress ?? "-- --"}</span>
                             </div>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <button className="p-2 border border-border rounded-lg hover:bg-muted transition">
-                                <Heart size={16} className="text-muted-foreground" />
-                            </button>
-                            <button className="p-2 border border-border rounded-lg hover:bg-muted transition">
-                                <Share2 size={16} className="text-muted-foreground" />
-                            </button>
+                        <div className="flex items-center gap-6">
+                                <Heart size={25} className="text-secondary" onClick={changefavouriteStatus} fill={favourite ? "red" : "none"}/>
+                                <Share2 size={23} className="text-muted-foreground" />
                             <button className="px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:opacity-90 transition">
                                 Book now
                             </button>

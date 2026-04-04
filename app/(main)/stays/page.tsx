@@ -148,8 +148,8 @@ const Stays = () => {
                         className="flex items-center gap-2">
                         <Image src={destination.img} width={80} height={80} alt={destination.name} className="w-20 h-20 rounded-md" />
                         <div>
-                            <h3 className="text-base font-medium">{destination.name}</h3>
-                            <p className="text-sm text-gray-500">{destination.places} places</p>
+                            <h3 className="text-sm font-medium">{destination.name}</h3>
+                            <p className="text-xs text-gray-500">{destination.places} places</p>
                         </div>
                     </motion.div>
                 ))}

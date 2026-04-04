@@ -34,6 +34,7 @@
 
   interface LocationResponse {
     success: boolean;
+    message: string;
     data: { locationData: LocationItem[] }
 }
 
@@ -93,6 +94,7 @@ interface CityInfo {
 
  interface IHotelResponse {
     success: boolean;
+    message: string;
     data: {
         cityInfo: CityInfo;
         hotels: Hotel[];
@@ -113,6 +115,7 @@ interface CityInfo {
      topAmenities: string[];
      amenityDetails: AmenityCategory[];
      images: HotelImage[];
+
  }
 
  export interface Address {
@@ -160,5 +163,6 @@ interface CityInfo {
 
  interface HotelDetailsRes {
     success: boolean;
+    message: string;
     data: HotelDetails;
  }

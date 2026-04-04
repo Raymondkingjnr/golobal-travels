@@ -101,6 +101,8 @@ const HotelsContent = () => {
         page * ITEMS_PER_PAGE
     )
 
+    console.log(data?.data)
+
     return (
         <div className={`min-h-screen`}>
 

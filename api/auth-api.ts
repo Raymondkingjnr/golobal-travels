@@ -6,7 +6,7 @@ export interface AuthUser{
     _id: string;
     name: string;
     email: string;
-};
+}
 
 interface AuthResponse {
     success: boolean;
@@ -15,7 +15,7 @@ interface AuthResponse {
         token: string;
         user: AuthUser;
     };
-};
+}
 
 
 interface  UserRes {
@@ -30,7 +30,7 @@ interface  UserRes {
 interface CurrentUserResponse  {
     success: boolean;
     data: UserRes;
-};
+}
 
 export interface SignUpParams {
     name: string;
@@ -116,7 +116,7 @@ export const logout = async () => {
         },
     });
 
-    let result: { success?: boolean; message?: string } | null = null;
+    let result: { success?: boolean; message?: string } | null ;
 
     try {
         result = (await response.json()) as { success?: boolean; message?: string };

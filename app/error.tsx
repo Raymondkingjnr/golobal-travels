@@ -37,11 +37,11 @@ export default function Error({
             </svg>
           </div>
           <h2 className="text-3xl font-bold text-foreground">Something went wrong!</h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-foreground text-lg">
             We encountered an unexpected error. Don&apos;t worry, it&apos;s not your fault.
           </p>
           {error.digest && (
-            <p className="text-xs text-muted-foreground/50 font-mono">
+            <p className="text-xs text-foreground/50 font-mono">
               Error ID: {error.digest}
             </p>
           )}
