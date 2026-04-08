@@ -189,7 +189,7 @@ export const forgotPassword = async (email: string) => {
 }
 
 export const passwordReset = async ( email: string, token: string, password: string) => {
-    const res = await fetch(`${baseUrl}/api/v1/auth/password-reset`, {
+    const res = await fetch(`${baseUrl}/api/v1/auth/recover-password`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -210,7 +210,7 @@ export const updatePassword = async (currentPassword: string, newPassword: strin
     if (!token) {
         throw new Error("No session token found");
     }
-    const res = await fetch(`${baseUrl}/api/v1/auth/update-password`, {
+    const res = await fetch(`${baseUrl}/api/v1/auth/change-password`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
