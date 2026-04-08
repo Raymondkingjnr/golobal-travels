@@ -35,8 +35,8 @@ const ResetPasswordContent = () => {
     const onSubmit = (values: IValues) =>{
         const payload ={
             email: email ?? "",
-            token: token ?? "",
             password: values.password,
+            token: token ?? "",
         }
         passwordReset.mutate(payload)
     }

@@ -188,13 +188,13 @@ export const forgotPassword = async (email: string) => {
     return result;
 }
 
-export const passwordReset = async (token: string, password: string, email: string) => {
+export const passwordReset = async ( email: string, token: string, password: string) => {
     const res = await fetch(`${baseUrl}/api/v1/auth/password-reset`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({token, password, email}),
+        body: JSON.stringify({email, token, password}),
     });
 
     const result = (await res.json()) as { success: boolean; message: string };
