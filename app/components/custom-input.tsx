@@ -1,5 +1,7 @@
+"use client";
+
 export const FloatingInput = ({label, placeholder, type = "text", value, onChange, error}: {
-    label: string;
+    label?: string;
     placeholder: string;
     type?: string;
     value?: string;
@@ -7,10 +9,11 @@ export const FloatingInput = ({label, placeholder, type = "text", value, onChang
     onChange?: (value: string) => void;
 })=> {
     return (
-        <div className="relative border border-[#112211]/20 rounded-lg px-3 pt-5 pb-2 focus-within:border-[#8DD3BB] transition-colors">
-            <label className="absolute top-1.5 left-3 text-[10px] text-[#112211]/50 font-medium tracking-wide">
+        <>
+            <label className="  text-[10px] text-[#112211]/50 font-medium tracking-wide">
                 {label}
             </label>
+        <div className="relative border border-[#112211]/20 rounded-lg px-3 py-2 focus-within:border-[#8DD3BB] transition-colors">
             <input
                 type={type}
                 value={value}
@@ -18,9 +21,10 @@ export const FloatingInput = ({label, placeholder, type = "text", value, onChang
                 placeholder={placeholder}
                 className="w-full text-sm text-[#112211] placeholder-[#112211]/30 bg-transparent outline-none"
             />
-            {error && (
-                <p className="text-sm text-[#FF8682] mt-1">{error}</p>
-            )}
         </div>
+            {error && (
+                <p className="text-sm text-[#FF8682]">{error}</p>
+            )}
+        </>
     );
 }

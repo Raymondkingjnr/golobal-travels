@@ -6,9 +6,10 @@ export interface AuthUser{
     _id: string;
     name: string;
     email: string;
+    isVerified?: boolean;
 }
 
-interface AuthResponse {
+export interface AuthResponse {
     success: boolean;
     message: string;
     data: {
@@ -24,6 +25,7 @@ interface  UserRes {
     email:string
     createdAt:string
     updatedAt:string
+    isVerified: boolean,
 }
 
 
@@ -40,7 +42,7 @@ export interface SignUpParams {
 
 export const login = async (email: string, password: string) => {
     const response = await fetch(`${baseUrl}/api/v1/auth/login`, {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
@@ -129,5 +131,98 @@ export const logout = async () => {
     }
 
     clearSessionStorage();
+    return result;
+}
+
+export const verifyEmail = async ( email: string, token:string) => {
+    const res = await fetch(`${baseUrl}/api/v1/auth/verify-email`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, token}),
+    });
+
+    const result = (await res.json()) as { success: boolean; message: string };
+
+    if (!res.ok || !result.success) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
+
+export const resendVerificationToken = async (email: string) => {
+    const res = await fetch(`${baseUrl}/api/v1/auth/resend-verification-token`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email}),
+    });
+
+    const result = (await res.json()) as { success: boolean; message: string };
+
+    if (!res.ok || !result.success) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
+
+export const forgotPassword = async (email: string) => {
+    const res = await fetch(`${baseUrl}/api/v1/auth/forgot-password`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email}),
+    });
+
+    const result = (await res.json()) as { success: boolean; message: string };
+
+    if (!res.ok || !result.success) {
+        throw new Error(result.message);
+    }
+
+    return result;
+}
+
+export const passwordReset = async (token: string, password: string, email: string) => {
+    const res = await fetch(`${baseUrl}/api/v1/auth/password-reset`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({token, password, email}),
+    });
+
+    const result = (await res.json()) as { success: boolean; message: string };
+
+    if (!res.ok || !result.success) {
+        throw new Error(result.message);
+    }
+    return result;
+}
+
+export const updatePassword = async (currentPassword: string, newPassword: string) => {
+    const token = getSessionStorage();
+    if (!token) {
+        throw new Error("No session token found");
+    }
+    const res = await fetch(`${baseUrl}/api/v1/auth/update-password`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({currentPassword, newPassword}),
+    });
+
+    const result = (await res.json()) as { success: boolean; message: string };
+
+    if (!res.ok || !result.success) {
+        throw new Error(result.message);
+    }
     return result;
 }

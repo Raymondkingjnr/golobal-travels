@@ -11,9 +11,9 @@ export const useSignupUser = () => {
     return useMutation({
         mutationFn: ({ name, email, password }: { name: string; email: string; password: string }) =>
             signUp(name, email, password),
-        onSuccess: () => {
+        onSuccess: (_, variables) => {
             toast.success("Account created successfully");
-            router.push("/login");
+            router.push(`/verify-email?email=${encodeURIComponent(variables.email)}`);
             void queryClient.invalidateQueries({ queryKey: ["current-user"] });
 
             watchSessionExpiry(() => {

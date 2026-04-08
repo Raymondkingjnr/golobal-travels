@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 import { LogoIcon } from "@/assets";
 import { AuthCarousel,FloatingInput } from "@/app/components";
@@ -11,7 +10,6 @@ import {useFormik} from "formik";
 import {SignUpParams} from "@/api/auth-api";
 
 export default function SignUpPage() {
-    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
     const [agreed, setAgreed] = useState(false);
@@ -40,7 +38,7 @@ export default function SignUpPage() {
 
     }
 
-    const {values, errors, handleChange, handleSubmit, isSubmitting} = useFormik({
+    const {values, errors, handleChange, handleSubmit} = useFormik({
         initialValues: {
             name: "",
             email: "",
@@ -70,21 +68,22 @@ export default function SignUpPage() {
 
                     <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
                         {/* Row 1 */}
-                        <div className="grid grid-cols-2 gap-4">
+                        {/*<div className="grid grid-cols-2 gap-4">*/}
+
                             <FloatingInput label="fullname"
                                            placeholder="John Deo"
                                            value={values.name}
                                            onChange={handleChange('name')}
                                            error={errors ? errors.name : ""} />
                             <FloatingInput
-                                label="Email"
+                                label={"Email"}
                                 placeholder="john.doe@gmail.com"
                                 type="email"
                                 value={values.email}
                                 onChange={handleChange('email')}
                                 error={errors ? errors.email : ""}
                             />
-                        </div>
+                        {/*</div>*/}
 
                         {/* Password */}
                         <div className="relative">
@@ -98,7 +97,7 @@ export default function SignUpPage() {
                             />
                             <button
                                 type="button"
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#112211]/40 hover:text-[#112211]/70 transition-colors"
+                                className="absolute right-3 bottom-0 -translate-y-1/2 text-[#112211]/40 hover:text-[#112211]/70 transition-colors"
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
@@ -116,7 +115,7 @@ export default function SignUpPage() {
                             />
                             <button
                                 type="button"
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#112211]/40 hover:text-[#112211]/70 transition-colors"
+                                className="absolute right-3 bottom-0 -translate-y-1/2 text-[#112211]/40 hover:text-[#112211]/70 transition-colors"
                                 onClick={() => setShowConfirm(!showConfirm)}
                             >
                                 {showConfirm ? <Eye size={18} /> : <EyeOff size={18} />}
@@ -173,7 +172,7 @@ export default function SignUpPage() {
                             disabled={signupMutation.isPending || !values.email || !values.name || !values.password || !confirmPassword || !agreed}
                             className="w-full py-4 bg-[#8DD3BB] hover:bg-[#7bc4aa] text-[#112211] font-semibold rounded-lg transition-colors mt-2"
                         >
-                            {signupMutation.isPending || isSubmitting ? "Creating account..." : "Create account"}
+                            {signupMutation.isPending ? "Creating account..." : "Create account"}
                         </button>
 
                         <p className="text-center text-sm text-[#112211]/70">

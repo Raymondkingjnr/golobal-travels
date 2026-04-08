@@ -8,5 +8,5 @@ export {LocationDropdown} from "./location-dropdown"
 export {Navbar} from "./navbar"
 export {AuthCarousel} from "./carousel-images"
 export {FloatingInput} from "./custom-input"
-
+export {default as TokenInput} from "./token-input"
 

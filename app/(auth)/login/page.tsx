@@ -7,19 +7,29 @@ import { Eye, EyeOff } from "lucide-react";
 import { LogoIcon } from "@/assets";
 import { useLoginUser } from "@/hooks/auth-hooks/login-user";
 import {useFormik} from "formik";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const loginMutation = useLoginUser();
+    const router = useRouter();
 
     const onSubmit = async (values: { email: string; password: string }) => {
         const payload = {
             email: values.email,
             password: values.password
         }
-        try {
-        loginMutation.mutate(payload)
 
+        try {
+            const result = await loginMutation.mutateAsync(payload);
+            const user = result.data.user;
+
+            if (user.isVerified) {
+                router.push("/");
+                return;
+            }
+
+            router.push(`/verify-email?email=${encodeURIComponent(user.email)}`);
         } catch (error){
             console.log(error)
         }
@@ -70,7 +80,7 @@ export default function LoginPage() {
                             />
                             <button
                                 type="button"
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#112211]/40 hover:text-[#112211]/70 transition-colors"
+                                className="absolute right-3 bottom-1 -translate-y-1/2 text-[#112211]/40 hover:text-[#112211]/70 transition-colors"
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
@@ -80,7 +90,7 @@ export default function LoginPage() {
                         {/* Remember + Forgot */}
                         <div className="flex items-center justify-between pt-1">
                             <Link
-                                href="#"
+                                href="/forget-password"
                                 className="text-sm text-[#FF8682] hover:underline font-medium"
                             >
                                 Forgot Password
